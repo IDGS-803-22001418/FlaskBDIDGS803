@@ -1,6 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash, g
+from flask_wtf.csrf import CSRFProtect # type: ignore
+from config import DevelopmentConfig
+
+import forms
+
+from models import db, Alumnos
 
 app = Flask(__name__)
+app.config.from_object(DevelopmentConfig)
+csrf = CSRFProtect()
 
 @app.errorhandler(404)
 def page_not_found(e): # type: ignore
@@ -16,4 +24,8 @@ def alumnos():
 	return render_template("Alumnos.html")
 
 if __name__ == '__main__':
+	csrf.init_app(app) # type: ignore
+	db.init_app(app)
+	with app.app_context():
+		db.create_all()
 	app.run(debug=True)
