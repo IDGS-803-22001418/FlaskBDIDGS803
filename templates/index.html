@@ -4,7 +4,8 @@
 <div class="flex flex-col gap-8 mt-10">
 
     <a href="Alumnos"
-        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Alumnos</a>
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Crear
+        Alumno</a>
 
     <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
         <table class="w-full text-sm text-left rtl:text-right text-body">
@@ -31,103 +32,34 @@
                 </tr>
             </thead>
             <tbody>
+                {% for alumno in alumnos %}
                 <tr class="bg-neutral-primary-soft border-b  border-default">
                     <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Mario Juan
+                        {{ alumno.nombre }}
                     </th>
                     <td class="px-6 py-4">
-                        Lopez
+                        {{ alumno.apaterno }}
                     </td>
                     <td class="px-6 py-4">
-                        lopez@gmail.com
+                        {{ alumno.email }}
                     </td>
                     <td class="px-6 py-4">
                         <button type="button"
                             class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</button>
                     </td>
                     <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</button>
+                        <a href="detalle?id={{alumno.id}}" type="button"
+                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</a>
                     </td>
                     <td class="px-6 py-4">
                         <button type="button"
                             class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</button>
                     </td>
                 </tr>
-                <tr class="bg-neutral-primary-soft border-b  border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Juan
-                    </th>
-                    <td class="px-6 py-4">
-                        Ramirez
-                    </td>
-                    <td class="px-6 py-4">
-                        ramirez@gmail.com
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</button>
-                    </td>
-                </tr>
-                <tr class="bg-neutral-primary-soft">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Guadalupe Veronica
-                    </th>
-                    <td class="px-6 py-4">
-                        Macias
-                    </td>
-                    <td class="px-6 py-4">
-                        iperez@utleon.edu.mx
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</button>
-                        </t d>
-                </tr>
-                <tr class="bg-neutral-primary-soft">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Dario
-                    </th>
-                    <td class="px-6 py-4">
-                        Muñoz
-                    </td>
-                    <td class="px-6 py-4">
-                        mgomezr@alumnos.unimundial.edu.mx
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</button>
-                        </t d>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-
-
 
 {% endblock %}
