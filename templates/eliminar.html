@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="flex flex-col w-screen justify-center items-center min-h-screen bg-gray-100">
+    <form method="POST" action="" class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md space-y-6">
+        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <h2 class="text-2xl font-bold text-gray-800 text-center">
+            Eliminar
+        </h2>
+
+        {{ macros.campoNuevo(form.nombre) }}
+        {{ macros.campoNuevo(form.apaterno) }}
+        {{ macros.campoNuevo(form.email) }}
+
+        <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 cursor-pointer">
+            Eliminar
+        </button>
+
+        <a href="/"
+            class="w-full block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 cursor-pointer text-center">
+            Regresar
+        </a>
+
+    </form>
+</div>
+
+{% endblock %}

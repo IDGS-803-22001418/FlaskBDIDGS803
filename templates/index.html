@@ -44,16 +44,16 @@
                         {{ alumno.email }}
                     </td>
                     <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</button>
+                        <a href="modificar?id={{alumno.id}}" type="button"
+                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</a>
                     </td>
                     <td class="px-6 py-4">
                         <a href="detalle?id={{alumno.id}}" type="button"
                             class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</a>
                     </td>
                     <td class="px-6 py-4">
-                        <button type="button"
-                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</button>
+                        <a href="eliminar?id={{alumno.id}}" type="button"
+                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
