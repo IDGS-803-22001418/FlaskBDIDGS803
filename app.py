@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf.csrf import CSRFProtect # type: ignore
+from flask_migrate import Migrate # type: ignore
 from config import DevelopmentConfig
 
 import forms
@@ -9,13 +10,15 @@ from models import db, Alumnos
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'una-clave-secreta-muy-dificil-de-adivinar'
 app.config.from_object(DevelopmentConfig)
+db.init_app(app)
+migrate = Migrate(app, db)
 csrf = CSRFProtect()
 
 @app.errorhandler(404)
 def page_not_found(e): # type: ignore
 	return render_template("404.html")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 @app.route("/index")
 def index():
 	alumnos = Alumnos.query.all() # type: ignore
@@ -27,8 +30,9 @@ def alumnos():
 	if request.method == "POST":
 		alumno = Alumnos(
 			nombre=create_form.nombre.data,  # type: ignore
-			apaterno=create_form.apaterno.data,  # type: ignore
-			email=create_form.email.data  # type: ignore
+			apellidos=create_form.apellidos.data,  # type: ignore
+			email=create_form.email.data,  # type: ignore
+			telefono=create_form.telefono.data # type: ignore
 		)
 		db.session.add(alumno)
 		db.session.commit()
@@ -47,13 +51,16 @@ def modificar():
 	id = request.args.get("id")
 	alumno = db.session.query(Alumnos).filter(Alumnos.id==id).first()
 	if request.method == "GET":
+		create_form.id.data = id # type: ignore
 		create_form.nombre.data = alumno.nombre # type: ignore
-		create_form.apaterno.data = alumno.apaterno # type: ignore
+		create_form.apellidos.data = alumno.apellidos # type: ignore
 		create_form.email.data = alumno.email # type: ignore
+		create_form.telefono.data = alumno.telefono # type: ignore
 	if request.method == "POST":
 		alumno.nombre = create_form.nombre.data # type: ignore
-		alumno.apaterno = create_form.apaterno.data # type: ignore
+		alumno.apellidos = create_form.apellidos.data # type: ignore
 		alumno.email = create_form.email.data  # type: ignore
+		alumno.telefono = create_form.telefono.data # type: ignore
 		db.session.add(alumno)
 		db.session.commit()
 		return redirect(url_for('index'))
@@ -65,9 +72,11 @@ def eliminar():
 	id = request.args.get("id")
 	alumno = db.session.query(Alumnos).filter(Alumnos.id==id).first()
 	if request.method == "GET":
+		create_form.id.data = id # type: ignore
 		create_form.nombre.data = alumno.nombre # type: ignore
-		create_form.apaterno.data = alumno.apaterno # type: ignore
+		create_form.apellidos.data = alumno.apellidos # type: ignore
 		create_form.email.data = alumno.email # type: ignore
+		create_form.telefono.data = alumno.telefono # type: ignore
 	if request.method == "POST":
 		db.session.delete(alumno)
 		db.session.commit()
@@ -78,7 +87,7 @@ def eliminar():
 
 if __name__ == '__main__':
 	csrf.init_app(app) # type: ignore
-	db.init_app(app)
+	
 	with app.app_context():
 		db.create_all()
 	app.run(debug=True)

@@ -15,10 +15,13 @@
                         Nombre
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        APaterno
+                        Apellidos
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
                         Correo
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Telefono
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
                         Editar
@@ -38,10 +41,13 @@
                         {{ alumno.nombre }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ alumno.apaterno }}
+                        {{ alumno.apellidos }}
                     </td>
                     <td class="px-6 py-4">
                         {{ alumno.email }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ alumno.telefono }}
                     </td>
                     <td class="px-6 py-4">
                         <a href="modificar?id={{alumno.id}}" type="button"

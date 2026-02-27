@@ -3,7 +3,7 @@
 {% import "_macros.html" as macros %}
 
 <div class="flex flex-col w-screen justify-center items-center min-h-screen bg-gray-100">
-    <form method="POST" action="" class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md space-y-6">
+    <form method="POST" action="" class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md space-y-6" novalidate>
         {{ form.csrf_token }}
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
@@ -11,9 +11,11 @@
             Eliminar
         </h2>
 
+        {{ macros.campoNuevo(form.id) }}
         {{ macros.campoNuevo(form.nombre) }}
-        {{ macros.campoNuevo(form.apaterno) }}
+        {{ macros.campoNuevo(form.apellidos) }}
         {{ macros.campoNuevo(form.email) }}
+        {{ macros.campoNuevo(form.telefono) }}
 
         <button type="submit"
             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 cursor-pointer">

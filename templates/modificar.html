@@ -11,13 +11,15 @@
             Modificar
         </h2>
 
+        {{ macros.campoNuevo(form.id) }}
         {{ macros.campoNuevo(form.nombre) }}
-        {{ macros.campoNuevo(form.apaterno) }}
+        {{ macros.campoNuevo(form.apellidos) }}
         {{ macros.campoNuevo(form.email) }}
+        {{ macros.campoNuevo(form.telefono) }}
 
         <button type="submit"
             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 cursor-pointer">
-            Guardar
+            Modificar
         </button>
 
         <a href="/"
