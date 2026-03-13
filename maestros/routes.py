@@ -1,5 +1,6 @@
 from . import maestros
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
+from sqlalchemy.exc import IntegrityError
 from models import db, Maestros
 import forms
 
@@ -29,8 +30,16 @@ def crear():
 			especialidad=create_form.especialidad.data, # type: ignore
 			email=create_form.email.data,  # type: ignore
 		)
-		db.session.add(maestro)
-		db.session.commit()
+		try:
+			db.session.add(maestro)
+			db.session.commit()
+			flash('Maestro registrado correctamente.', 'success')
+		except IntegrityError as error:
+			db.session.rollback()
+			if 'duplicate' in str(error.orig).lower() or 'unique' in str(error.orig).lower():
+				flash('La matricula ya esta registrada para otro maestro.', 'error')
+			else:
+				flash(f'Error de base de datos: {error.orig}', 'error')
 		return redirect(url_for('maestros.index'))
 	return render_template("maestros/crear.html", form=create_form)
 
@@ -51,8 +60,16 @@ def modificar():
 		maestro.apellidos = create_form.apellidos.data # type: ignore
 		maestro.especialidad = create_form.especialidad.data # type: ignore
 		maestro.email = create_form.email.data  # type: ignore
-		db.session.add(maestro)
-		db.session.commit()
+		try:
+			db.session.add(maestro)
+			db.session.commit()
+			flash('Maestro actualizado correctamente.', 'success')
+		except IntegrityError as error:
+			db.session.rollback()
+			if 'duplicate' in str(error.orig).lower() or 'unique' in str(error.orig).lower():
+				flash('La matricula ya esta registrada para otro maestro.', 'error')
+			else:
+				flash(f'Error de base de datos: {error.orig}', 'error')
 		return redirect(url_for('maestros.index'))
 	return render_template("maestros/modificar.html", form=create_form)
 

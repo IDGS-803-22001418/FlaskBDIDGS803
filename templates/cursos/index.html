@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block container %}
+
+<div class="flex flex-col gap-8 mt-10">
+
+    <a href="/cursos/crear"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Crear
+        Curso</a>
+
+    <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+        <table class="w-full text-sm text-left rtl:text-right text-body">
+            <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
+                <tr>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Nombre
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Descripción
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Maestro
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Editar
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Detalles
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Eliminar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if cursos|length == 0 %}
+                <tr class="bg-neutral-primary-soft border-b  border-default">
+                    <td colspan="7" class="px-6 py-4 text-center">
+                        No hay cursos disponibles.
+                    </td>
+                </tr>
+                {% else %}
+                {% for curso in cursos %}
+                <tr class="bg-neutral-primary-soft border-b  border-default">
+                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                        {{ curso.nombre }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ curso.descripcion }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/cursos/modificar?id={{curso.id}}" type="button"
+                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Editar</a>
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/cursos/detalle?id={{curso.id}}" type="button"
+                            class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Detalles</a>
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/cursos/eliminar?id={{curso.id}}" type="button"
+                            class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none cursor-pointer">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
